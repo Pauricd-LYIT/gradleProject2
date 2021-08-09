@@ -1,0 +1,25 @@
+name: CI with Java and gradle
+
+on: [push]
+   
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup JDK 11
+      uses: actions/setup-java@V2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        
+    - name: Checkout our code
+      uses: actions/checkout@V2
+      
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+     
+    - name: Run Build using gradlew
+      run: ./gradlew build
+    
